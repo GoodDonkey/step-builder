@@ -1,0 +1,5 @@
+rootProject.name = 'stepbuilder'
+include 'demoApp'
+include 'annotation'
+include 'annotationprocessor'
+

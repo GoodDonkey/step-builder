@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'org.donkey'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task initSrouceFolders {
+    sourceSets*.java.srcDirs*.each {
+        if (!it.exists()) {
+            it.mkdirs()
+        }
+    }
+    sourceSets*.resources.srcDirs*.each {
+        if (!it.exists()) {
+            it.mkdirs()
+        }
+    }
+}
+subprojects {
+    task createProjectPackageStructure {
+        String basePackageStructure = "src/main/java/com/donkey/stepbuilder"
+        Directory baseProjectPackageStructure = layout.projectDirectory.dir(basePackageStructure)
+        if (!baseProjectPackageStructure.asFile.exists()){
+            mkdir(basePackageStructure)
+        }
+    }
+}
