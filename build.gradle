@@ -5,6 +5,8 @@ plugins {
 group 'org.donkey'
 version '1.0-SNAPSHOT'
 
+jar.enabled(false)
+
 repositories {
     mavenCentral()
 }
@@ -30,6 +32,14 @@ task initSrouceFolders {
         }
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 subprojects {
     task createProjectPackageStructure {
         String basePackageStructure = "src/main/java/com/donkey/stepbuilder"
@@ -39,3 +49,7 @@ subprojects {
         }
     }
 }
+
+//task cleanDir(type: Delete) {
+//    delete rootProject.buildDir
+//}

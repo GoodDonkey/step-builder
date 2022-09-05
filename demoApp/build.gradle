@@ -7,14 +7,29 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    google()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 dependencies {
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+
     implementation project(":annotation")
     annotationProcessor project(":annotationprocessor")
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files("/Users/motive/Projects/stepbuilder/annotationprocessor/build/libs/annotationprocessor-1.0-SNAPSHOT.jar")
+
 }
 
 test {
